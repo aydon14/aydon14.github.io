@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="img/site-icon.png" type="image/png">
+        <script defer>
+            function openSource() {
+                /* This function toggles the source page to open in a new tab. */
+                window.open('https://github.com/aydon14/aydon14.github.io', '_blank');
+            }
+
+            function togglePage() {
+                window.location.href = 'index.html';
+            }
+
+            function parseMarkdown(markdown) {
+                markdown = markdown.replace(/^# (.*$)/gim, '<h2>$1</h2>'); // headers
+                markdown = markdown.replace(/^## (.*$)/gim, '<h3>$1</h3>');
+                markdown = markdown.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // bold
+                markdown = markdown.replace(/\*([^*]*)\*/g, '<i>$1</i>'); // italic
+                markdown = markdown.replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' class='md-photo-container'/>"); // images
+                markdown = markdown.replace(/\^(.*)\^/gim, "<div class='md-caption'>$1</div>"); // caption
+                markdown = markdown.replace(/\[(.*?)\]\((.*?)\)/g, "<a href='$2' target='_blank'>$1</a>"); // links
+                markdown = markdown.replace(/(?<!^)\n(?!$)/g, '<br />'); // Seperator
+                return markdown.trim();
+            }
+    
+            function loadMarkdown(file) {
+                fetch(file)
+                    .then(response => response.text())
+                    .then(text => {
+                        const htmlContent = parseMarkdown(text);
+                        document.getElementById('md-content').innerHTML = htmlContent;
+                    })
+                    .catch(error => console.error('Error loading markdown file:', error));
+            }
+
+            function setHeaderElements() {
+                // Select the <header> element
+                const header = document.querySelector('header');
+                
+                if (header) {
+                    // Select the <h1> and <p> elements within the <header>
+                    const h1Element = header.querySelector('h1');
+                    const pElement = header.querySelector('p');
+                    
+                    // Set the text content of the <h1> and <p> elements
+                    if (h1Element) h1Element.textContent = localStorage.getItem('postTitle');
+                    if (pElement) pElement.textContent = localStorage.getItem('postDate');
+                }
+            }
+    
+            document.addEventListener('DOMContentLoaded', () => {
+                const filename = localStorage.getItem('postFilename');
+                if (filename) {
+                    loadMarkdown('posts/' + filename);
+                } else {
+                    console.error('No post filename found in localStorage.');
+                }
+                setHeaderElements()
+            });
+        </script>
+        <title>Aydon's Posts</title>
+    </head>
+    <body>
+        <header>
+            <div class="button-container">
+                <button class="menu-button" onclick="togglePage()">Home</button>
+                <button class="source-button" onclick="openSource()">Source</button>
+            </div>
+            <h1>Post Title</h1>
+            <p>Post Date</p>
+        </header>
+
+        <main id="md-content">
+            <!-- Post content will be dynamically inserted here -->
+        </main>
+
+        <footer>
+            <section>
+                <p class="footer-info">Made by Aydon Fauscett 7/18/24</p>
+                <p class="footer-info">Feel free to use as a template.</p>
+            </section>
+        </footer>
+    </body>
+</html>
