@@ -1,0 +1,219 @@
+/* Reset and fullscreen setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+}
+
+/* CRT Screen */
+.crt {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Terminal content */
+.terminal {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    color: #0f0;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    position: relative;
+    z-index: 2;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.terminal::-webkit-scrollbar {
+    display: none;
+}
+
+.terminal, .terminal * {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.terminal-content {
+    flex: 1;
+}
+
+.crt:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 30%,
+        rgba(0, 0, 0, 0.5) 90%,
+        rgba(0, 0, 0, 0.9) 100%
+    );
+    pointer-events: none;
+    z-index: 3;
+}
+
+.crt:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 
+        inset 0 0 100px rgba(0, 0, 0, 0.9),
+        inset 0 0 30px rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, 0.3) 51%,
+        transparent 52%
+    );
+    background-size: 100% 4px;
+    z-index: 5;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.v-scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent 50%,
+        rgba(0, 0, 0, 0.1) 51%,
+        transparent 52%
+    );
+    background-size: 4px 100%;
+    z-index: 5;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.flicker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00ff00;
+    opacity: 0.001;
+    z-index: 3;
+    pointer-events: none;
+}
+
+@keyframes scanFlicker {
+    0%, 95%, 100% {
+        opacity: 0.7;
+    }
+    96%, 99% {
+        opacity: 0.6;
+    }
+}
+
+.scanlines {
+    animation: scanFlicker 8s infinite;
+}
+
+@keyframes textFlicker {
+    0%, 92%, 96%, 98%, 100% {
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+    94%, 97%, 99% {
+        text-shadow: 0 0 6px rgba(0, 255, 0, 0.8);
+    }
+}
+
+.terminal-text {
+    animation: textFlicker 6s infinite;
+}
+
+.cursor {
+    position: absolute;
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    background-color: #0f0;
+    bottom: 2px;
+    animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+#command-input {
+    background: transparent;
+    border: none;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: inherit;
+    outline: none;
+    width: 100%;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    caret-color: transparent;
+    padding-right: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    height: 100%;
+}
+
+#input-line {
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    height: 1.2em;
+}
+
+#prompt {
+    white-space: pre;
+}
+
+#display-input {
+    white-space: pre;
+    color: #0f0;
+    position: relative;
+}
+
+.output-text {
+    white-space: pre-wrap;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
