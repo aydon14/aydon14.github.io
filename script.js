@@ -118,7 +118,7 @@ function processCommand(cmd) {
         if (!filename.endsWith('.MD')) {
             response = `FILE ERROR: UNABLE TO CATALOG BINARY FILES`;
         } else {
-            parseMarkdown(`./${(disk !== "ROOT" ? disk + "/" : "") + filename.toLowerCase()}`)
+            parseMarkdown(`./${((disk !== "ROOT" ? disk + "/" : "") + filename).toLowerCase()}`)
                 .then(parsedContent => {
                     const responseOutput = document.createElement('div');
                     responseOutput.className = 'output-text terminal-text';
@@ -162,7 +162,7 @@ function processCommand(cmd) {
                 audio = null;
             }
             if (filename.endsWith('.MP3')) {
-                const filePath = `./${(disk !== "ROOT" ? disk + "/" : "") + filename.toLowerCase()}`;
+                const filePath = `./${((disk !== "ROOT" ? disk + "/" : "") + filename).toLowerCase()}`;
                 fetch(filePath, { method: 'HEAD' })
                     .then(response => {
                         if (!response.ok) throw new Error();
