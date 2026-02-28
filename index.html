@@ -1,19 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Aydon's CTFs</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ACTFC Login Page</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #0a1224; /* deep dark blue */
+    }
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 30%, #0b1840 0%, #050910 100%);
+    }
+
+    /* Splash overlay */
+    #splash {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      opacity: 1;
+      transition: opacity 2s ease-out;
+      pointer-events: none;
+    }
+    #splash .logo-wrap {
+      position: relative;
+      display: inline-block;
+      width: min(92vw, 1000px);
+    }
+    #splash img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    
+    #splash .shine {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      -webkit-mask-image: url('png/ACTFC.png');
+      mask-image: url('png/ACTFC.png');
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-position: center;
+      mask-position: center;
+      background: linear-gradient(-65deg,
+        rgba(255,255,255,0) 45%,
+        rgba(255,255,255,1) 50%,
+        rgba(255,255,255,0) 55%);
+      background-repeat: no-repeat;
+      background-size: 220% 220%;
+      background-position: 140% 0%;
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 0 2px white);
+      opacity: 0;
+    }
+    #splash.ready .shine {
+      animation: splash-sweep 3s ease-out 500ms 1 forwards;
+    }
+    #splash.done {
+      opacity: 0;
+    }
+    @keyframes splash-sweep {
+      0%   { background-position: 140% 0%; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { background-position: -60% 0%; opacity: 0; }
+    }
+
+    /* Auth layout */
+    #auth-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    #auth-container.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .auth-card {
+      width: min(360px, 90vw);
+      padding: clamp(28px, 4vmin, 48px);
+      border-radius: 24px;
+      background: rgba(5, 9, 16, 0.85);
+      border: 1px solid rgba(255, 204, 0, 0.25);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: #f5f7ff;
+      align-items: center;
+    }
+    .logo-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .aurora-frame {
+      width: 100%;
+      max-width: 200px;
+      height: 100px;
+      margin-top: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cifa-frame {
+      min-height: 300px;
+      min-width: 300px;
+    }
+    .logo-stack img {
+      max-width: 200px;
+      width: 70%;
+      height: auto;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.45));
+    }
+    .logo-stack img.aurora-logo {
+      max-height: none;
+      width: 100%;
+      height: auto;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    input {
+      margin-top: 0px;
+      padding: 8px 14px;
+      border-radius: 0;
+      border: 1px solid rgba(255, 204, 0, 0.4);
+      background: rgba(11, 17, 34, 0.85);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      width: 100%;
+      text-align: center;
+      border-radius: 5px;
+    }
+    input:focus {
+      border-color: #ffcc00;
+      box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.25);
+    }
+    .actions {
+      display: flex;
+      gap: 18px;
+      margin-top: 8px;
+      width: 100%;
+    }
+    .actions button {
+      flex: 1;
+      padding: 12px 0;
+      border: none;
+      border-radius: 15px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .actions button.signup {
+      background: transparent;
+      color: #ffcc00;
+      border: 1px solid rgba(255, 204, 0, 0.8);
+    }
+    .actions button.login {
+      background: linear-gradient(135deg, #ffcc00, #ffb400);
+      color: #050910;
+      box-shadow: 0 4px 24px rgba(255, 204, 0, 0.35);
+    }
+    .actions button:hover {
+      transform: translateY(-2px);
+    }
+    .notice {
+      width: 100%;
+      text-align: center;
+      padding: 14px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 204, 0, 0.22);
+      background: rgba(11, 17, 34, 0.55);
+      line-height: 1.35;
+    }
+    .notice .title {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 204, 0, 0.95);
+      margin-bottom: 10px;
+    }
+    .notice p {
+      margin: 0 0 10px 0;
+      color: rgba(245, 247, 255, 0.88);
+    }
+    .notice p:last-child {
+      margin-bottom: 0;
+    }
+    .notice .date {
+      font-weight: 800;
+      color: rgba(245, 247, 255, 0.98);
+    }
+  </style>
 </head>
 <body>
-    <header class="title">
-        Aydon's CTF Challenges
-    </header>
-    <div class="main-content">
-        <!-- Challenge material goes here -->
+  <div id="splash">
+    <div class="logo-wrap">
+      <img id="splash-logo" src="png/ACTFC.png" alt="ACTFC logo">
+      <div class="shine" aria-hidden="true"></div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-    <script src="script.js"></script>
+  </div>
+
+  <canvas id="network"></canvas>
+
+  <div id="auth-container">
+    <div class="auth-card">
+      <div class="logo-stack">
+        <img class="cifa-frame" src="png/CIFA.png" alt="CIFA logo">
+        <div class="aurora-frame">
+          <img class="aurora-logo" src="png/Aurora.png" alt="Aurora logo">
+        </div>
+      </div>
+      <div class="notice" role="status" aria-live="polite">
+        <div class="title">System Notice</div>
+        <p>The Secure Access Portal is currently offline pending scheduled activation.</p>
+        <p>Official launch date: <span class="date">09 March 2026</span></p>
+        <p>Please check back at that time.</p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="background.js"></script>
+  <script type="module" src="authenticate.js"></script>
 </body>
 </html>
