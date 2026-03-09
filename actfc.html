@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Aydon's CTF Challenges</title>
+</head>
+<body>
+    <canvas id="network"></canvas>
+    <div class="body">
+        <header class="title">
+            ACTFC | CIFA | AURORA
+        </header>
+        <div class="main-content">
+            <!-- Challenge material goes here -->
+        </div>
+        <div class="issues-msg">
+            Experiencing issues? Email:<br>
+            aydons.ctf.help@gmail.com
+        </div>
+        <div class="leaderboard" id="leaderboard"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyCJ8_oauhlngQwvuV9jaI_DGnqk7VVjrR8",
+        authDomain: "actfc-database-8c6ce.firebaseapp.com",
+        projectId: "actfc-database-8c6ce",
+        storageBucket: "actfc-database-8c6ce.firebasestorage.app",
+        messagingSenderId: "236287838550",
+        appId: "1:236287838550:web:c7434ec3ea557903e82ef7",
+        measurementId: "G-GX4GMPDXTN"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="background.js"></script>
+    <script src="actfc.js"></script>
+</body>
+</html>
