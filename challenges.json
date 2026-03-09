@@ -1,0 +1,133 @@
+{
+    "total": 15,
+    "challenges": [
+        {
+            "title": "nib.esreveR",
+            "hash": "321c595a6becced977afe81d87944c4a3f5d6718bab0ee93ab48d44103148d66",
+            "files": [
+                {
+                    "filename": "secret_intel.txt",
+                    "hash": "1d49be68e6dfdcb3be244242351ebcc3e8bbfac6ceac1d0c698f167378aefbb2"
+                }
+            ]
+        },
+        {
+            "title": "VT",
+            "hash": "76db5dec9c4550ba23fa7aeb41fc7b5a2b9ffa246afb5d1b3b307623caa8553d",
+            "files": [
+                {
+                    "filename": "virus.exe",
+                    "hash": "e0cc9024b43f054553f65b280b50fbac041293225b6ca54c04e99be3ff86e43b"
+                }
+            ]
+        },
+        {
+            "title": "Steganographic Streams",
+            "hash": "34e210b4e0f2291831c8f0182f87548430d83f478756f83f09d28365f7d12db8",
+            "files": [
+                {
+                    "filename": "CIFA-IDS-Detection-10554.pcap",
+                    "hash": "5bf075021d0c49cf81fc2360778eaf0f0357b3379774c16142b00527c3796b8d"
+                }
+            ]
+        },
+        {
+            "title": "POOR XOOR",
+            "hash": "a464a8c172b098b7be45d3adf0bbc65f54227e75e11aa2b37b7f38a0b17abc67"
+        },
+        {
+            "title": "Stegaudiophy",
+            "hash": "e8a44ac28f053f6fb75e01534098555ba2aafea1955686427c3a54a281791031",
+            "files": [
+                {
+                    "filename": "IDS-obj-extract-11512.wav",
+                    "hash": "8f25eb2353061b3c44cde039d34bcbf100ab6d2e6c27e612803c6437fb7379d6"
+                }
+            ]
+        },
+        {
+            "title": "A website needs a network.",
+            "hash": "67969a92ccef33a0c5042745ff7d59283cc78fcb93e94dee9ecf36663258b236"
+        },
+        {
+            "title": "Too easy...",
+            "hash": "c94a680bc5d59443c0b41de52c7287a3cc88cca8adff575a524e42c1fe2ede3b",
+            "files": [
+                {
+                    "filename": "data.txt",
+                    "hash": "8fb9d0b1cf425a25a229e6462e992fd9e5b5aeca004a36616fab5c2d7f6da00d"
+                }
+            ]
+        },
+        {
+            "title": "The mathematician",
+            "hash": "c98956fd75206018d371d45e1509a9eba8e1dd56c4f047e04786e2965b3e9c3e",
+            "files": [
+                {
+                    "filename": "algorithm.py",
+                    "hash": "a81cb3f74402484aa74613ec015abcfb1beebec39797d837f1209d1e57ce8ace"
+                },
+                {
+                    "filename": "data_enc_comp_45c.json",
+                    "hash": "992bf3c7ce780ea1ff7235012c73dd809f24880c1f48c3730221c844d601a765"
+                }
+            ]
+        },
+        {
+            "title": "distractions...",
+            "hash": "127f360c4dfef13173fd6b8d06cf59946ebdcbbac024e252a5c53a432a984836",
+            "files": [
+                {
+                    "filename": "r33-copy.exe",
+                    "hash": "b603b7814e52670f5c89ada359beb94fe9c33ff9b1a5a773a55454e2f1b50bd5"
+                }
+            ]
+        },
+        {
+            "title": "A moral rootkit",
+            "hash": "be1303a895251139bf9fff06e36543e0c28ccd9bf625ea5535014249b7527b67"
+        },
+        {
+            "title": "74 68 72 65 65 21",
+            "hash": "cc20100316599754be4cde79ca251f01bb5094dbcf2aed2f8c5c30c3b112442a",
+            "files": [
+                {
+                    "filename": "IDS-obj-extract-13166.txt",
+                    "hash": "dd5b111b66693821a0acdae266fd2066377e97d1b18985c9047c3019df5b7f6b"
+                }
+            ]
+        },
+        {
+            "title": "flag, Flag, FLAG!",
+            "hash": "4506d16d9899b73bf752a8a108403ab5c53a7d7d2a792faefad5fba4880f8e37",
+            "files": [
+                {
+                    "filename": "the_flagorstegosaur.png",
+                    "hash": "b19e6276bdeb26e55a6822ab7baa87c905a2a75bc90d0c301b87f792a2786f98"
+                }
+            ]
+        },
+        {
+            "title": "GeoGuessr",
+            "hash": "177c5c33f3f7be178366b2cb0427c7eb685f53635c305afaf0c0a938474a37d7"
+        },
+        {
+            "title": "War Games",
+            "hash": "a3d50c32563e55ba09d565a666d710868063bbddc4863942ca367cfca215ac0d",
+            "files": [
+                {
+                    "filename": "INT-SESSION03_CH05_20260217_213402.wav",
+                    "hash": "5f01d532fa39f3cbe692900fb259c5f6952b1574f3c9e392e93f62c27b495586"
+                }
+            ]
+        },
+        {
+            "title": "Ouroboros",
+            "hash": "47bb5c7cd7747cf73b4c9e82177028766bb0ba6860323f93d67f1d0cd329ea1a"
+        },
+        {
+            "title": "Finale",
+            "hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+    ]
+}

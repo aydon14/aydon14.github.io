@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Aydon's CTF Introduction</title>
+</head>
+<body>
+    <canvas id="network"></canvas>
+    <div class="body">
+        <header class="title">
+            ACTFC Introduction
+        </header>
+        <div class="main-content">
+            Welcome.
+            <br><br>
+            Project AURORA is a black-cell initiative operating under the direct authority 
+            of the Cyber Intelligence & Forensics Agency (CIFA). Publicly, this program 
+            does not exist. Internally, it is responsible for the collection, reversal, 
+            deobfuscation, and decryption of materials that conventional analysis has 
+            deemed irrelevant - or deliberately overlooked.
+            <br><br>
+            You have been designated as an Asset-in-Processing. I am your handler. My 
+            identity is not your concern. I already know everything I need to know about 
+            you. You know nothing about me — and that asymmetry is by design.
+            <br><br>
+            You currently hold no formal clearance. Your access is limited strictly to the 
+            materials presented within this portal, within your assigned tasks, and within 
+            the public domain. Any information obtained outside of these boundaries is to 
+            be considered contaminated and must be disregarded. By selecting "Initialize," 
+            you acknowledge and accept this constraint - and agree not to disclose any 
+            intelligence gathered in the course of your assignments.
+            <br><br>
+            Should you complete the full mission set before your fellow operatives, 
+            recognition - and potential reward - may follow. The standing of all active 
+            informants can be monitored via the leaderboard.
+            <br><br>
+            Portal Functions:
+            <br><br>
+            &bull; Access: This interface is your sole sanctioned channel for task retrieval and submission.<br>
+            &bull; Progress: Challenges are strictly linear. Only one directive will be active at any given time.<br>
+            &bull; Visibility: A public leaderboard reflects the current standing of all active informants in real time.<br>
+            &bull; Pace: Operations are self-directed. Precision and methodology will serve you better than haste.
+            <br><br>
+            No further context is operationally required. Your first directive has already 
+            been staged and is awaiting a request handshake.
+            <br><br>
+            When you are ready, initialize.
+            <br><br>
+            Good luck, Operative.
+        </div>
+        <div class="button-holder">
+            <button class="start-button" onclick=start()>Initialize</button>
+        </div>
+    </div>
+
+    <script>
+        function start() {
+            window.location.href = 'actfc.html';
+        }
+    </script>
+    <script src="background.js"></script>
+</body>
+</html>
