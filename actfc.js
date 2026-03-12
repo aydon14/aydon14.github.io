@@ -117,7 +117,7 @@ function loadLeaderboard() {
     // Query the top 100 public users
     db.collection("publicUsers")
       .orderBy("challenge", "desc")
-      .orderBy("username", "asc")
+      .orderBy("completedAt", "asc")
       .limit(100)
       .get()
       .then(snapshot => {
