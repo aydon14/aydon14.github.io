@@ -98,8 +98,14 @@
             ]
         },
         {
-            "title": "flag, Flag, FLAG!",
-            "hash": "4506d16d9899b73bf752a8a108403ab5c53a7d7d2a792faefad5fba4880f8e37"
+            "title": "flag, Flag, FLAG! (fixed)",
+            "hash": "4506d16d9899b73bf752a8a108403ab5c53a7d7d2a792faefad5fba4880f8e37",
+            "files": [
+                {
+                    "filename": "the_flagorstegosaur.png",
+                    "hash": "dc17ae360ab430eafc693d07702ed9d4b0abf82d5a58dbcf1e0089be9eff8bc3"
+                }
+            ]
         },
         {
             "title": "GeoGuessr",
